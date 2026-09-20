@@ -369,6 +369,11 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
 .nearby-now-meta{font-size:11px;font-weight:800;color:#4d4840;margin:8px 0 10px}
 @media(min-width:720px){.nearby-now-grid{grid-template-columns:1fr 1fr}.nearby-now-card>img{height:230px}}
 
+
+.nearby-food-more{margin:0 0 16px;background:linear-gradient(180deg,#f7fbff,#fff);border:1px solid #dce7ef;border-radius:22px;padding:14px;box-shadow:var(--shadow)}
+.nearby-food-more .nearby-now-card>img{height:220px;object-fit:cover}
+@media(min-width:720px){.nearby-food-more .nearby-now-card>img{height:250px}}
+
 </style>
 </head>
 <body>
@@ -907,6 +912,72 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
     </div>
   </section>
 
+  <section class="nearby-food-more" id="nearby-dinner-more">
+    <div class="nearby-now-head">
+      <div>
+        <span class="nearby-now-kicker">さらに近場候補</span>
+        <h3>食事写真で選ぶ｜Carnaby・Soho</h3>
+        <p>今回は料理写真だけに統一。見て「これ食べたい」で選べる候補です。</p>
+      </div>
+    </div>
+    <div class="nearby-now-grid">
+      <article class="nearby-now-card" data-dinner-id="lebab">
+        <img src="https://cdn.prod.website-files.com/6a7077bd75c067ff93685856/6a7077bd75c067ff93685992_francisco-de-legarreta-c-orIQn6nszgo-unsplash%201.avif" alt="Le Bab Soho のケバブ料理" loading="lazy">
+        <div class="nearby-now-body">
+          <div class="nearby-now-tags"><span>Kingly Court</span><span>£25以下目安</span><span>中東料理</span></div>
+          <strong>Le Bab Soho</strong>
+          <p>Top Floor, Kingly Court。普通のケバブよりかなりモダン。Paneer Kebab、Salt Beef Kebab、fondue friesなどをシェアしやすい。</p>
+          <div class="nearby-now-meta">日曜 12:30–21:30</div>
+          <div class="actions"><button type="button" data-dinner-focus="lebab">地図で見る</button><a href="https://www.google.com/maps/search/?api=1&query=Le%20Bab%20Soho%20Kingly%20Court" target="_blank" rel="noopener">Google Maps</a></div>
+        </div>
+      </article>
+
+      <article class="nearby-now-card" data-dinner-id="bao">
+        <img src="https://cdn.sanity.io/images/we4m1nyk/production/69269b0997457114b0d0fc1f250fb300698ce22f-1366x768.png?auto=format&w=1366" alt="BAO Soho の料理" loading="lazy">
+        <div class="nearby-now-body">
+          <div class="nearby-now-tags"><span>Soho</span><span>台湾料理</span><span>Walk-in</span></div>
+          <strong>BAO Soho</strong>
+          <p>53 Lexington Street。小さな蒸しパンのBAO、台湾フライドチキン、ライス系。席数は少なめですが、回転が早い候補。</p>
+          <div class="nearby-now-meta">日曜 12:00–21:00 ／ Walk-in only</div>
+          <div class="actions"><button type="button" data-dinner-focus="bao">地図で見る</button><a href="https://www.google.com/maps/search/?api=1&query=BAO%20Soho%2053%20Lexington%20Street%20London" target="_blank" rel="noopener">Google Maps</a></div>
+        </div>
+      </article>
+
+      <article class="nearby-now-card" data-dinner-id="elpollote">
+        <img src="https://static.wixstatic.com/media/3757b1_d8473825dd4d41d6a19b2257e0fafb77~mv2.jpg/v1/fill/w_980%2Ch_654%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_auto/3757b1_d8473825dd4d41d6a19b2257e0fafb77~mv2.jpg" alt="El Pollote のラテン風フライドチキン" loading="lazy">
+        <div class="nearby-now-body">
+          <div class="nearby-now-tags"><span>Ganton Street</span><span>フライドチキン</span><span>カジュアル</span></div>
+          <strong>El Pollote</strong>
+          <p>13 Ganton Street。ラテンアメリカ風のフライドチキン。味がはっきりしていて、気軽にしっかり食べたい時に向きます。</p>
+          <div class="nearby-now-meta">日曜 11:00–21:00</div>
+          <div class="actions"><button type="button" data-dinner-focus="elpollote">地図で見る</button><a href="https://www.google.com/maps/search/?api=1&query=El%20Pollote%2013%20Ganton%20Street%20London" target="_blank" rel="noopener">Google Maps</a></div>
+        </div>
+      </article>
+
+      <article class="nearby-now-card" data-dinner-id="imads">
+        <img src="https://images.squarespace-cdn.com/content/v1/5fe21f47210cb95eba898053/a486ce6c-99dc-4b27-8773-652fac97f93b/JamieLau-Imad-010823%2B146.jpg" alt="Imad’s Syrian Kitchen の料理" loading="lazy">
+        <div class="nearby-now-body">
+          <div class="nearby-now-tags"><span>Kingly Court</span><span>シリア料理</span><span>シェア向き</span></div>
+          <strong>Imad’s Syrian Kitchen</strong>
+          <p>Top Floor, Kingly Court。フムス、ファラフェル、グリル肉、野菜料理などを数皿シェアするスタイル。彩りもよく、家族で選びやすい。</p>
+          <div class="nearby-now-meta">日曜 11:00–21:00</div>
+          <div class="actions"><button type="button" data-dinner-focus="imads">地図で見る</button><a href="https://www.google.com/maps/search/?api=1&query=Imads%20Syrian%20Kitchen%20Kingly%20Court%20London" target="_blank" rel="noopener">Google Maps</a></div>
+        </div>
+      </article>
+
+      <article class="nearby-now-card" data-dinner-id="mothermash">
+        <img src="https://images.squarespace-cdn.com/content/v1/64d34b06130dc26ca9a33506/1691572832260-I477MXFPYFVMMFNXI09B/Mother-Mash1-.jpg" alt="Mother Mash のパイとマッシュポテト" loading="lazy">
+        <div class="nearby-now-body">
+          <div class="nearby-now-tags"><span>Ganton Street</span><span>英国料理</span><span>£10–20目安</span></div>
+          <strong>Mother Mash Carnaby</strong>
+          <p>26 Ganton Street。パイ／ソーセージ＋マッシュ＋グレイビーの英国コンフォートフード。わかりやすくて価格も抑えめ。</p>
+          <div class="nearby-now-meta">日曜 12:00–22:00</div>
+          <div class="actions"><button type="button" data-dinner-focus="mothermash">地図で見る</button><a href="https://www.google.com/maps/search/?api=1&query=Mother%20Mash%2026%20Ganton%20Street%20London" target="_blank" rel="noopener">Google Maps</a></div>
+        </div>
+      </article>
+    </div>
+  
+
   <div class="dinner-tonight"><b>今夜の本命：</b>Flat Iron Piccadilly。Piccadilly Circusのすぐ近くで、ステーキ中心・雰囲気も良く、価格も高級店ほど重くありません。パスタならBancone Golden Square、華やかな内装ならBrasserie Zédel、気軽ならPizza Pilgrims Soho。</div>
   <div class="dinner-map-card">
     <div class="dinner-map-head">
@@ -917,6 +988,11 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
       <button type="button" id="dinnerFitAll">全候補を見る</button>
     </div>
     <div class="dinner-map-chips" id="dinnerMapChips">
+      <button type="button" data-dinner-focus="lebab">Le Bab</button>
+      <button type="button" data-dinner-focus="bao">BAO Soho</button>
+      <button type="button" data-dinner-focus="elpollote">El Pollote</button>
+      <button type="button" data-dinner-focus="imads">Imad’s</button>
+      <button type="button" data-dinner-focus="mothermash">Mother Mash</button>
       <button type="button" data-dinner-focus="padella">★ Padella Soho</button>
       <button type="button" data-dinner-focus="dishoomcarnaby">Dishoom Carnaby</button>
       <button type="button" data-dinner-focus="pastaio">Pastaio</button>
@@ -1373,6 +1449,11 @@ loadLeaflet().then(()=>initSouvenirGuide()).catch(()=>{const loading=document.ge
 
 
 const DINNER_PLACES = [
+  {id:'lebab',name:'Le Bab Soho',address:'Top Floor, Kingly Court, London W1B 5PW',lat:51.51314,lng:-0.13907,maps:'https://www.google.com/maps/search/?api=1&query=Le%20Bab%20Soho%20Kingly%20Court'},
+  {id:'bao',name:'BAO Soho',address:'53 Lexington St, London W1F 9AS',lat:51.51386,lng:-0.13611,maps:'https://www.google.com/maps/search/?api=1&query=BAO%20Soho%2053%20Lexington%20Street%20London'},
+  {id:'elpollote',name:'El Pollote',address:'13 Ganton St, London W1F 9BL',lat:51.51281,lng:-0.13843,maps:'https://www.google.com/maps/search/?api=1&query=El%20Pollote%2013%20Ganton%20Street%20London'},
+  {id:'imads',name:"Imad’s Syrian Kitchen",address:'Top Floor, Kingly Court, London W1B 5PW',lat:51.51319,lng:-0.13914,maps:'https://www.google.com/maps/search/?api=1&query=Imads%20Syrian%20Kitchen%20Kingly%20Court%20London'},
+  {id:'mothermash',name:'Mother Mash Carnaby',address:'26 Ganton St, London W1F 7QZ',lat:51.51264,lng:-0.13716,maps:'https://www.google.com/maps/search/?api=1&query=Mother%20Mash%2026%20Ganton%20Street%20London'},
   {id:'padella',name:'Padella Soho',address:'2 Kingly St, London W1B 5PB',lat:51.51240,lng:-0.13905,maps:'https://www.google.com/maps/search/?api=1&query=Padella%20Soho%202%20Kingly%20Street%20London'},
   {id:'dishoomcarnaby',name:'Dishoom Carnaby',address:'22 Kingly St, London W1B 5QP',lat:51.51311,lng:-0.13923,maps:'https://www.google.com/maps/search/?api=1&query=Dishoom%20Carnaby%2022%20Kingly%20Street%20London'},
   {id:'pastaio',name:'Pastaio Carnaby',address:'19 Ganton St, London W1F 9BN',lat:51.51277,lng:-0.13806,maps:'https://www.google.com/maps/search/?api=1&query=Pastaio%2019%20Ganton%20Street%20London'},
