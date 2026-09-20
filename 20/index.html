@@ -172,7 +172,23 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
 
 .top-souvenir-jump{max-width:1100px;margin:0 auto;padding:0 18px 12px}.top-souvenir-jump a{display:flex;align-items:center;justify-content:space-between;gap:12px;text-decoration:none;background:linear-gradient(135deg,#fff0f7,#f3efff);border:1px solid #ead8e7;border-radius:18px;padding:13px 15px;box-shadow:0 8px 24px rgba(60,40,50,.08)}.top-souvenir-jump strong{font-size:15px;line-height:1.35}.top-souvenir-jump span{font-size:11px;color:var(--muted);line-height:1.45}.top-souvenir-jump .jump-arrow{font-size:22px;flex:0 0 auto}@media(max-width:520px){.top-souvenir-jump{padding-top:6px}.top-souvenir-jump a{padding:11px 13px;border-radius:15px}}
 
+
 #souvenir-list-anchor{scroll-margin-top:18px}
+.souvenir-map-shell{position:relative;background:#eee}
+.souvenir-map-loading{position:absolute;inset:0;z-index:500;display:grid;place-items:center;text-align:center;padding:20px;background:#f3f3f3;color:#666;font-size:12px;line-height:1.6}
+.souvenir-map-loading[hidden]{display:none}
+@media(max-width:680px){
+  .souvenir-map-head{display:block;padding:14px}
+  .souvenir-map-head>div:first-child{min-width:0;width:100%}
+  .souvenir-map-head h3{font-size:22px;line-height:1.25;overflow-wrap:normal;word-break:normal}
+  .souvenir-map-head p{font-size:12px;line-height:1.55;overflow-wrap:anywhere}
+  .souvenir-map-links{margin-top:12px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .souvenir-map-links a{text-align:center;padding:10px 8px}
+  .souvenir-osm-map{height:280px!important}
+  .souvenir-layout{gap:14px}
+  .souvenir-map-note{font-size:11px;line-height:1.55}
+}
+
 </style>
 </head>
 <body>
@@ -248,8 +264,7 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
   </div>
   <div class="selected-bar">
     <div><b>♡ 行きたい候補 <span id="selectedCount">0</span>件</b><br><small id="selectedNames">写真を見てハートを押してね</small></div>
-    <button id="clearPicked">クリア</button>
-  </div>
+    <button id="clearPicked">クリア</button>  </div>
   <div class="grid">
     
     <article class="place-card" id="card-buckingham" data-flags="free photo fixed">
@@ -498,8 +513,7 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
         <div class="travel">
           <div><span>🚶 徒歩</span><strong>約22–25分</strong></div>
           <div><span>🚇 電車</span><strong>Embankment→Waterloo 約2分</strong></div>
-          <div><span>🚶 駅まで/から</span><strong>合計 約11–13分</strong></div>
-          <div class="total"><span>⏱ ホテルから合計</span><strong>約14–17分</strong></div>
+          <div><span>🚶 駅まで/から</span><strong>合計 約11–13分</strong></div>          <div class="total"><span>⏱ ホテルから合計</span><strong>約14–17分</strong></div>
         </div>
         <div class="mini"><b>滞在目安：</b>20–40分　<b>狙い目：</b>Big Ben側から南岸へ渡る流れ</div>
         <div class="actions">
@@ -707,7 +721,7 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
           <a id="souvenirRoute" href="#" target="_blank" rel="noopener">ホテルから経路</a>
         </div>
       </div>
-      <div id="souvenirOsmMap" class="souvenir-osm-map"></div>
+      <div class="souvenir-map-shell"><div id="souvenirMapLoading" class="souvenir-map-loading">OpenStreetMapを読み込み中…</div><div id="souvenirOsmMap" class="souvenir-osm-map"></div></div>
       <div class="souvenir-map-note"><b id="souvenirMapHours">日 10:00–19:00</b> ／ <span id="souvenirMapNote">キャラもの／写真映え</span><br>※ OSM表示。初回は住所から順番に位置を引き、店を地図に置きます。地図が出にくい環境でもGoogle Mapsリンクでそのまま開けます。</div>
     </div>
     <div class="souvenir-list-card" id="souvenir-list-anchor">
@@ -748,8 +762,7 @@ function loadLeaflet(){
     let i=0;
     const tryNext=()=>{
       if(i>=urls.length){reject(new Error('Leaflet could not be loaded'));return;}
-      const sc=document.createElement('script');
-      sc.src=urls[i++];
+      const sc=document.createElement('script');      sc.src=urls[i++];
       sc.onload=()=>window.L?resolve():tryNext();
       sc.onerror=tryNext;
       document.head.appendChild(sc);
@@ -951,7 +964,7 @@ function souvenirMapsLink(query){ return 'https://www.google.com/maps/search/?ap
 function souvenirRouteLink(address){ return 'https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(SOUVENIR_HOTEL)+'&destination='+encodeURIComponent(address)+'&travelmode=walking'; }
 let souvenirFilter='all';
 let currentSouvenirId=SOUVENIR_SHOPS[0].id;
-let souvenirMap=null; let souvenirMarkers={};
+let souvenirMap=null; let souvenirMarkers={}; let souvenirGuideStarted=false;
 function getSouvenirMarkerClass(type){ return type==='supermarket'?'market':(type==='beauty'?'beauty':(type==='stationery'?'stationery':'gift')); }
 function makeSouvenirIcon(type){
   const cls=getSouvenirMarkerClass(type);
@@ -972,7 +985,13 @@ function renderSouvenirList(){
 async function ensureSouvenirMap(){
   if(souvenirMap || !window.L) return souvenirMap;
   souvenirMap=L.map('souvenirOsmMap',{zoomControl:true,scrollWheelZoom:false,zoomAnimation:!IS_IOS,fadeAnimation:!IS_IOS,markerZoomAnimation:!IS_IOS,inertia:!IS_IOS}).setView([51.5100,-0.1273],14);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap',updateWhenIdle:true,keepBuffer:1}).addTo(souvenirMap);
+  const loading=document.getElementById('souvenirMapLoading');
+  const tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors',updateWhenIdle:true,keepBuffer:1,crossOrigin:true}).addTo(souvenirMap);
+  let tileErrors=0;
+  tiles.on('load',()=>{if(loading) loading.hidden=true;});
+  tiles.on('tileload',()=>{if(loading) loading.hidden=true;});
+  tiles.on('tileerror',()=>{tileErrors++;if(tileErrors>=3 && loading){loading.innerHTML='OpenStreetMapの地図画像を取得できません。<br>上の「Google Mapsで開く」は利用できます。';}});
+  setTimeout(()=>{if(souvenirMap){souvenirMap.invalidateSize(false);}},180);
   const hotel=L.marker([51.509999,-0.127286],{icon:L.divIcon({className:'',html:'<div class="souvenir-pin market">🏨</div>',iconSize:[28,28],iconAnchor:[14,14]})}).addTo(souvenirMap);
   hotel.bindPopup('<div class="souvenir-popup-title">ホテル</div><div class="souvenir-popup-small">hub by Premier Inn London Covent Garden<br>110 St Martin\'s Lane, WC2N 4BA</div>');
   return souvenirMap;
@@ -995,7 +1014,31 @@ async function plotVisibleSouvenirs(){
     try{ const marker=await ensureSouvenirMarker(item); points.push(marker.getLatLng()); }catch(e){}
   }
   if(points.length){ souvenirMap.fitBounds(L.latLngBounds(points),{padding:[28,28]}); }
-}
-async function showSouvenir(id, fly){
+}async function showSouvenir(id, fly){
   const item=SOUVENIR_SHOPS.find(x=>x.id===id) || SOUVENIR_SHOPS[0]; currentSouvenirId=item.id;
   const title=document.getElementById('souvenirMapTitle'); const addr=document.getElementById('souvenirMapAddress'); const reason=document.getElementById('souvenirMapReason');
+  const hours=document.getElementById('souvenirMapHours'); const note=document.getElementById('souvenirMapNote'); const g=document.getElementById('souvenirGoogle'); const route=document.getElementById('souvenirRoute');
+  if(title) title.textContent=item.name; if(addr) addr.textContent=item.address; if(reason) reason.textContent=item.reason; if(hours) hours.textContent=item.hours; if(note) note.textContent=item.note+' ／ おすすめ: '+item.buy;
+  if(g) g.href=souvenirMapsLink(item.query||item.address); if(route) route.href=souvenirRouteLink(item.address);
+  renderSouvenirList();
+  if(!window.L) return;
+  try{ const marker=await ensureSouvenirMarker(item); if(fly!==false) souvenirMap.flyTo(marker.getLatLng(),16,{duration:.6}); marker.openPopup(); }catch(e){}
+}
+async function initSouvenirGuide(){
+  if(souvenirGuideStarted) return;
+  souvenirGuideStarted=true;
+  renderSouvenirHighlights();
+  const filters=document.getElementById('souvenirFilters');
+  if(filters){ filters.querySelectorAll('.souvenir-chip').forEach(chip=>chip.addEventListener('click',async()=>{
+    souvenirFilter=chip.dataset.filter; filters.querySelectorAll('.souvenir-chip').forEach(el=>el.classList.toggle('active',el===chip));
+    const filtered=SOUVENIR_SHOPS.filter(x=>souvenirFilter==='all'||x.type===souvenirFilter);
+    if(filtered.length && !filtered.some(x=>x.id===currentSouvenirId)) currentSouvenirId=filtered[0].id;
+    renderSouvenirList(); await plotVisibleSouvenirs(); await showSouvenir(currentSouvenirId,false);
+  })); }
+  renderSouvenirList(); await plotVisibleSouvenirs(); await showSouvenir(currentSouvenirId,false);
+}
+loadLeaflet().then(()=>initSouvenirGuide()).catch(()=>{const loading=document.getElementById('souvenirMapLoading');if(loading)loading.innerHTML='地図ライブラリを読み込めません。<br>「Google Mapsで開く」を利用してください。';renderSouvenirList();renderSouvenirHighlights();});
+
+</script>
+</body>
+</html>
