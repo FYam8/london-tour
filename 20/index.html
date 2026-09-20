@@ -178,15 +178,15 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
 .souvenir-map-loading{position:absolute;inset:0;z-index:500;display:grid;place-items:center;text-align:center;padding:20px;background:#f3f3f3;color:#666;font-size:12px;line-height:1.6}
 .souvenir-map-loading[hidden]{display:none}
 @media(max-width:680px){
-  .souvenir-map-head{display:block;padding:14px}
-  .souvenir-map-head>div:first-child{min-width:0;width:100%}
-  .souvenir-map-head h3{font-size:22px;line-height:1.25;overflow-wrap:normal;word-break:normal}
-  .souvenir-map-head p{font-size:12px;line-height:1.55;overflow-wrap:anywhere}
-  .souvenir-map-links{margin-top:12px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .souvenir-map-links a{text-align:center;padding:10px 8px}
-  .souvenir-osm-map{height:280px!important}
-  .souvenir-layout{gap:14px}
-  .souvenir-map-note{font-size:11px;line-height:1.55}
+  .souvenir-map-head{display:block!important;padding:14px!important}
+  .souvenir-map-head>div:first-child{min-width:0!important;width:100%!important}
+  .souvenir-map-head h3{font-size:22px!important;line-height:1.25!important;overflow-wrap:normal!important;word-break:normal!important;white-space:normal!important}
+  .souvenir-map-head p{font-size:12px!important;line-height:1.55!important;overflow-wrap:anywhere!important}
+  .souvenir-map-links{margin-top:12px!important;width:100%!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .souvenir-map-links a{text-align:center!important;padding:10px 8px!important}
+  .souvenir-osm-map{height:280px!important;min-height:280px!important}
+  .souvenir-layout{gap:14px!important}
+  .souvenir-map-note{font-size:11px!important;line-height:1.55!important}
 }
 
 </style>
@@ -247,8 +247,7 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
       <button id="hotelFocus2">ホテル中心</button>
       <button id="fitPicked">♡ 選んだ場所だけ</button>
       <button id="showOsm">OpenStreetMap</button>
-      <button id="showGoogle">Google Maps</button>
-    </div>
+      <button id="showGoogle">Google Maps</button>    </div>
   </div>
 </section>
 
@@ -264,7 +263,8 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
   </div>
   <div class="selected-bar">
     <div><b>♡ 行きたい候補 <span id="selectedCount">0</span>件</b><br><small id="selectedNames">写真を見てハートを押してね</small></div>
-    <button id="clearPicked">クリア</button>  </div>
+    <button id="clearPicked">クリア</button>
+  </div>
   <div class="grid">
     
     <article class="place-card" id="card-buckingham" data-flags="free photo fixed">
@@ -496,8 +496,7 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
         <details class="credit"><summary>写真クレジット</summary>
           <a href="https://commons.wikimedia.org/wiki/File:Carnaby_Street_2025-08-27.jpg" target="_blank" rel="noopener">Wikimedia Commons / Matt Brown</a>
         </details>
-      </div>
-    </article>
+      </div>    </article>
     
     <article class="place-card" id="card-leake" data-flags="photo art">
       <div class="photo-wrap">
@@ -513,7 +512,8 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
         <div class="travel">
           <div><span>🚶 徒歩</span><strong>約22–25分</strong></div>
           <div><span>🚇 電車</span><strong>Embankment→Waterloo 約2分</strong></div>
-          <div><span>🚶 駅まで/から</span><strong>合計 約11–13分</strong></div>          <div class="total"><span>⏱ ホテルから合計</span><strong>約14–17分</strong></div>
+          <div><span>🚶 駅まで/から</span><strong>合計 約11–13分</strong></div>
+          <div class="total"><span>⏱ ホテルから合計</span><strong>約14–17分</strong></div>
         </div>
         <div class="mini"><b>滞在目安：</b>20–40分　<b>狙い目：</b>Big Ben側から南岸へ渡る流れ</div>
         <div class="actions">
@@ -745,8 +745,7 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
       <li>Tower Bridge内部：通常09:30–18:00、最終入場17:00。</li>
       <li>Banksy像：Waterloo Placeの2026年作品。9/6時点のBanksy Map掲載では「Still Running」。ただし屋外作品のため9/20直前に再確認推奨。</li>
       <li>交通時間はホテル起点の概算。工事・日曜ダイヤ・混雑で変わるので、当日はGoogle Maps/TfLで確認。</li>
-    </ul>
-  </details>
+    </ul>  </details>
 </section>
 
 <script>
@@ -762,7 +761,8 @@ function loadLeaflet(){
     let i=0;
     const tryNext=()=>{
       if(i>=urls.length){reject(new Error('Leaflet could not be loaded'));return;}
-      const sc=document.createElement('script');      sc.src=urls[i++];
+      const sc=document.createElement('script');
+      sc.src=urls[i++];
       sc.onload=()=>window.L?resolve():tryNext();
       sc.onerror=tryNext;
       document.head.appendChild(sc);
@@ -994,8 +994,7 @@ async function ensureSouvenirMap(){
   setTimeout(()=>{if(souvenirMap){souvenirMap.invalidateSize(false);}},180);
   const hotel=L.marker([51.509999,-0.127286],{icon:L.divIcon({className:'',html:'<div class="souvenir-pin market">🏨</div>',iconSize:[28,28],iconAnchor:[14,14]})}).addTo(souvenirMap);
   hotel.bindPopup('<div class="souvenir-popup-title">ホテル</div><div class="souvenir-popup-small">hub by Premier Inn London Covent Garden<br>110 St Martin\'s Lane, WC2N 4BA</div>');
-  return souvenirMap;
-}
+  return souvenirMap;}
 async function ensureSouvenirMarker(item){
   await ensureSouvenirMap();
   if(souvenirMarkers[item.id]) return souvenirMarkers[item.id];
@@ -1014,7 +1013,8 @@ async function plotVisibleSouvenirs(){
     try{ const marker=await ensureSouvenirMarker(item); points.push(marker.getLatLng()); }catch(e){}
   }
   if(points.length){ souvenirMap.fitBounds(L.latLngBounds(points),{padding:[28,28]}); }
-}async function showSouvenir(id, fly){
+}
+async function showSouvenir(id, fly){
   const item=SOUVENIR_SHOPS.find(x=>x.id===id) || SOUVENIR_SHOPS[0]; currentSouvenirId=item.id;
   const title=document.getElementById('souvenirMapTitle'); const addr=document.getElementById('souvenirMapAddress'); const reason=document.getElementById('souvenirMapReason');
   const hours=document.getElementById('souvenirMapHours'); const note=document.getElementById('souvenirMapNote'); const g=document.getElementById('souvenirGoogle'); const route=document.getElementById('souvenirRoute');
