@@ -172,6 +172,7 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
 
 .top-souvenir-jump{max-width:1100px;margin:0 auto;padding:0 18px 12px}.top-souvenir-jump a{display:flex;align-items:center;justify-content:space-between;gap:12px;text-decoration:none;background:linear-gradient(135deg,#fff0f7,#f3efff);border:1px solid #ead8e7;border-radius:18px;padding:13px 15px;box-shadow:0 8px 24px rgba(60,40,50,.08)}.top-souvenir-jump strong{font-size:15px;line-height:1.35}.top-souvenir-jump span{font-size:11px;color:var(--muted);line-height:1.45}.top-souvenir-jump .jump-arrow{font-size:22px;flex:0 0 auto}@media(max-width:520px){.top-souvenir-jump{padding-top:6px}.top-souvenir-jump a{padding:11px 13px;border-radius:15px}}
 
+#souvenir-list-anchor{scroll-margin-top:18px}
 </style>
 </head>
 <body>
@@ -201,7 +202,7 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
     </div>
   </div>
 </header>
-<section class="top-souvenir-jump" aria-label="おみやげショートカット"><a href="#souvenir-map"><div><strong>🎁 おみやげ・スーパーを見る</strong><br><span>写真付きおすすめ一覧＋OpenStreetMap専用地図へ</span></div><div class="jump-arrow">↓</div></a></section>
+<section class="top-souvenir-jump" aria-label="おみやげショートカット"><a href="#souvenir-list-anchor"><div><strong>🎁 お土産おすすめ一覧へ</strong><br><span>写真付きおすすめ・文房具・コスメ・お菓子・スーパーをすぐ見る</span></div><div class="jump-arrow">↓</div></a></section>
 
 
 <section class="notice">
@@ -497,7 +498,8 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
         <div class="travel">
           <div><span>🚶 徒歩</span><strong>約22–25分</strong></div>
           <div><span>🚇 電車</span><strong>Embankment→Waterloo 約2分</strong></div>
-          <div><span>🚶 駅まで/から</span><strong>合計 約11–13分</strong></div>          <div class="total"><span>⏱ ホテルから合計</span><strong>約14–17分</strong></div>
+          <div><span>🚶 駅まで/から</span><strong>合計 約11–13分</strong></div>
+          <div class="total"><span>⏱ ホテルから合計</span><strong>約14–17分</strong></div>
         </div>
         <div class="mini"><b>滞在目安：</b>20–40分　<b>狙い目：</b>Big Ben側から南岸へ渡る流れ</div>
         <div class="actions">
@@ -708,7 +710,7 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
       <div id="souvenirOsmMap" class="souvenir-osm-map"></div>
       <div class="souvenir-map-note"><b id="souvenirMapHours">日 10:00–19:00</b> ／ <span id="souvenirMapNote">キャラもの／写真映え</span><br>※ OSM表示。初回は住所から順番に位置を引き、店を地図に置きます。地図が出にくい環境でもGoogle Mapsリンクでそのまま開けます。</div>
     </div>
-    <div class="souvenir-list-card">
+    <div class="souvenir-list-card" id="souvenir-list-anchor">
       <div class="souvenir-list-head"><h3>おすすめ一覧</h3><p>押すと地図がその店に移動。カテゴリで絞り込みもできます</p></div>
       <div class="souvenir-list" id="souvenirList"></div>
     </div>
@@ -990,32 +992,10 @@ async function plotVisibleSouvenirs(){
   const items=SOUVENIR_SHOPS.filter(x=>souvenirFilter==='all'||x.type===souvenirFilter);
   const points=[];
   for(const item of items){
-    try{ const marker=await ensureSouvenirMarker(item); points.push(marker.getLatLng()); }catch(e){}  }
+    try{ const marker=await ensureSouvenirMarker(item); points.push(marker.getLatLng()); }catch(e){}
+  }
   if(points.length){ souvenirMap.fitBounds(L.latLngBounds(points),{padding:[28,28]}); }
 }
 async function showSouvenir(id, fly){
   const item=SOUVENIR_SHOPS.find(x=>x.id===id) || SOUVENIR_SHOPS[0]; currentSouvenirId=item.id;
   const title=document.getElementById('souvenirMapTitle'); const addr=document.getElementById('souvenirMapAddress'); const reason=document.getElementById('souvenirMapReason');
-  const hours=document.getElementById('souvenirMapHours'); const note=document.getElementById('souvenirMapNote'); const g=document.getElementById('souvenirGoogle'); const route=document.getElementById('souvenirRoute');
-  if(title) title.textContent=item.name; if(addr) addr.textContent=item.address; if(reason) reason.textContent=item.reason; if(hours) hours.textContent=item.hours; if(note) note.textContent=item.note+' ／ おすすめ: '+item.buy;
-  if(g) g.href=souvenirMapsLink(item.query||item.address); if(route) route.href=souvenirRouteLink(item.address);
-  renderSouvenirList();
-  if(!window.L) return;
-  try{ const marker=await ensureSouvenirMarker(item); if(fly!==false) souvenirMap.flyTo(marker.getLatLng(),16,{duration:.6}); marker.openPopup(); }catch(e){}
-}
-async function initSouvenirGuide(){
-  renderSouvenirHighlights();
-  const filters=document.getElementById('souvenirFilters');
-  if(filters){ filters.querySelectorAll('.souvenir-chip').forEach(chip=>chip.addEventListener('click',async()=>{
-    souvenirFilter=chip.dataset.filter; filters.querySelectorAll('.souvenir-chip').forEach(el=>el.classList.toggle('active',el===chip));
-    const filtered=SOUVENIR_SHOPS.filter(x=>souvenirFilter==='all'||x.type===souvenirFilter);
-    if(filtered.length && !filtered.some(x=>x.id===currentSouvenirId)) currentSouvenirId=filtered[0].id;
-    renderSouvenirList(); await plotVisibleSouvenirs(); await showSouvenir(currentSouvenirId,false);
-  })); }
-  renderSouvenirList(); await plotVisibleSouvenirs(); await showSouvenir(currentSouvenirId,false);
-}
-if(window.L){ initSouvenirGuide(); } else { window.addEventListener('load', initSouvenirGuide, {once:true}); }
-
-</script>
-</body>
-</html>
