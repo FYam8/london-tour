@@ -122,6 +122,8 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
 
 .dinner-gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px}.dinner-shot{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}.dinner-shot img{display:block;width:100%;height:130px;object-fit:cover;background:#eee}.dinner-shot figcaption{padding:10px 12px}.dinner-shot b{display:block;font-size:13px;line-height:1.35;margin-bottom:2px}.dinner-shot span{display:block;font-size:11px;color:var(--muted);line-height:1.45}.dinner-list .dinner{align-items:center}.dinner-main{display:flex;gap:12px;align-items:center}.dinner-thumb{width:72px;height:72px;border-radius:14px;object-fit:cover;flex:0 0 72px;background:#eee;display:block}.dinner-copy{min-width:0}@media (min-width:720px){.dinner-gallery{grid-template-columns:repeat(4,1fr)}.dinner-shot img{height:150px}}
 
+.dinner-extra-grid{display:grid;grid-template-columns:1fr;gap:12px;margin:0 0 14px}.dinner-extra-card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}.dinner-extra-photo{height:210px;background:linear-gradient(135deg,#ffe6ef,#e7e2ff);position:relative}.dinner-extra-photo img{width:100%;height:100%;object-fit:cover;display:block}.dinner-extra-photo.photo-error:after{content:"PHOTO";position:absolute;inset:0;display:grid;place-items:center;font-weight:900;font-size:28px;color:rgba(0,0,0,.22)}.dinner-extra-body{padding:13px}.dinner-extra-body>strong{display:block;font-size:18px;margin:5px 0 6px}.dinner-extra-body p{margin:0 0 8px;font-size:12px;line-height:1.6;color:var(--muted)}.dinner-extra-tags{display:flex;gap:5px;flex-wrap:wrap}.dinner-extra-tags span{font-size:10px;font-weight:800;background:#f5f1f6;border-radius:999px;padding:4px 7px}.dinner-extra-meta{font-size:10.5px;line-height:1.5;color:#57545a;margin-bottom:9px}@media(min-width:720px){.dinner-extra-grid{grid-template-columns:repeat(3,1fr)}.dinner-extra-photo{height:190px}}
+
 .dinner-gallery.more{grid-template-columns:1fr 1fr;gap:10px}.dinner-shot.compact img{height:118px}.dinner-shot.compact figcaption{padding:8px 10px}.dinner-shot.compact b{font-size:12px}.dinner-shot.compact span{font-size:10.5px}.dinner-subtitle{font-size:12px;color:var(--muted);margin:14px 0 10px;font-weight:800}.dinner-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}.dinner-mini{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}.dinner-mini img{display:block;width:100%;height:110px;object-fit:cover}.dinner-mini .copy{padding:9px 10px}.dinner-mini strong{display:block;font-size:12px;line-height:1.35}.dinner-mini p{margin:3px 0 0;font-size:10.5px;color:var(--muted);line-height:1.4}@media (min-width:720px){.dinner-gallery.more{grid-template-columns:repeat(4,1fr)}.dinner-mini-grid{grid-template-columns:repeat(4,1fr)}.dinner-shot.compact img,.dinner-mini img{height:130px}}
 
 /* souvenir guide */
@@ -699,6 +701,9 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
       <button type="button" data-dinner-focus="bancone">Bancone</button>
       <button type="button" data-dinner-focus="zedel">Brasserie Zédel</button>
       <button type="button" data-dinner-focus="pizzapilgrims">Pizza Pilgrims</button>
+      <button type="button" data-dinner-focus="fallow">Fallow</button>
+      <button type="button" data-dinner-focus="kiln">Kiln</button>
+      <button type="button" data-dinner-focus="circolo">Circolo</button>
       <button type="button" data-dinner-focus="seven">Seven Dials</button>
       <button type="button" data-dinner-focus="dishoom">Dishoom</button>
       <button type="button" data-dinner-focus="dintaifung">Din Tai Fung</button>
@@ -749,6 +754,41 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
       <div class="dinner-side"><span>徒歩 約8–10分</span><a href="https://www.google.com/maps/search/?api=1&query=Flat%20Iron%20Covent%20Garden%20London" target="_blank" rel="noopener">地図</a></div>
     </div>
   </div>
+
+  <p class="dinner-subtitle">さらにおすすめ｜おしゃれ重視</p>
+  <div class="dinner-extra-grid">
+    <article class="dinner-extra-card" data-dinner-id="fallow">
+      <div class="dinner-extra-photo"><img src="https://www.theworlds50best.com/discovery/filestore/jpg/Fallow_Interior.jpg" alt="Fallow Haymarket の店内" loading="lazy" onerror="this.closest('.dinner-extra-photo').classList.add('photo-error');this.style.display='none'"></div>
+      <div class="dinner-extra-body">
+        <div class="dinner-extra-tags"><span>Piccadillyすぐ</span><span>雰囲気◎</span></div>
+        <strong>Fallow</strong>
+        <p>Haymarketのモダン・ブリティッシュ。オープンキッチンとグリーン系の内装で、Flat Ironより少し予算は上がるものの「高級すぎないおしゃれ」を狙いやすい。</p>
+        <div class="dinner-extra-meta">📍 52 Haymarket, SW1Y 4RP　／　日曜 11:30–22:00</div>
+        <div class="actions"><button type="button" data-dinner-focus="fallow">地図で見る</button><a href="https://www.google.com/maps/search/?api=1&query=Fallow%2052%20Haymarket%20London" target="_blank" rel="noopener">Google Maps</a></div>
+      </div>
+    </article>
+    <article class="dinner-extra-card" data-dinner-id="kiln">
+      <div class="dinner-extra-photo"><img src="https://www.we-heart.com/upload-images/kilnsoholondon1.jpg" alt="Kiln Soho の店内" loading="lazy" onerror="this.closest('.dinner-extra-photo').classList.add('photo-error');this.style.display='none'"></div>
+      <div class="dinner-extra-body">
+        <div class="dinner-extra-tags"><span>Soho</span><span>カウンター</span><span>タイ料理</span></div>
+        <strong>Kiln Soho</strong>
+        <p>目の前で火が上がるオープンキッチンが特徴。小さめで今っぽい雰囲気。辛い料理が大丈夫なら面白い候補。予約ではなくウォークイン中心。</p>
+        <div class="dinner-extra-meta">📍 58 Brewer St, W1F 9TL　／　日曜 12:00–21:00</div>
+        <div class="actions"><button type="button" data-dinner-focus="kiln">地図で見る</button><a href="https://www.google.com/maps/search/?api=1&query=Kiln%2058%20Brewer%20Street%20London" target="_blank" rel="noopener">Google Maps</a></div>
+      </div>
+    </article>
+    <article class="dinner-extra-card" data-dinner-id="circolo">
+      <div class="dinner-extra-photo"><img src="https://media-cdn.tripadvisor.com/media/photo-m/1280/18/26/55/33/circolo-popolare.jpg" alt="Circolo Popolare の店内" loading="lazy" onerror="this.closest('.dinner-extra-photo').classList.add('photo-error');this.style.display='none'"></div>
+      <div class="dinner-extra-body">
+        <div class="dinner-extra-tags"><span>写真映え◎</span><span>イタリアン</span><span>家族向け</span></div>
+        <strong>Circolo Popolare</strong>
+        <p>写真映えを最優先なら強い候補。壁一面のボトルとライトが華やかなイタリアン。今回の中心エリアからは少し北ですが、中3女子と行く店としては雰囲気がかなり分かりやすい。</p>
+        <div class="dinner-extra-meta">📍 40–41 Rathbone Pl, W1T 1HX　／　日曜 11:00–22:00</div>
+        <div class="actions"><button type="button" data-dinner-focus="circolo">地図で見る</button><a href="https://www.google.com/maps/search/?api=1&query=Circolo%20Popolare%2040-41%20Rathbone%20Place%20London" target="_blank" rel="noopener">Google Maps</a></div>
+      </div>
+    </article>
+  </div>
+  <p class="footer-note">※ 上の3店はすべて実店舗の写真を使用しています。写真が取得できない場合はカード内にフォールバック表示を出します。</p>
 
   <p class="dinner-subtitle">写真つき追加候補</p>
   <div class="dinner-mini-grid">
@@ -1109,6 +1149,9 @@ loadLeaflet().then(()=>initSouvenirGuide()).catch(()=>{const loading=document.ge
 
 
 const DINNER_PLACES = [
+  {id:'fallow',name:'Fallow',address:'52 Haymarket, London SW1Y 4RP',lat:51.509241,lng:-0.132682,maps:'https://www.google.com/maps/search/?api=1&query=Fallow%2052%20Haymarket%20London'},
+  {id:'kiln',name:'Kiln Soho',address:'58 Brewer St, London W1F 9TL',lat:51.51135,lng:-0.13600,maps:'https://www.google.com/maps/search/?api=1&query=Kiln%2058%20Brewer%20Street%20London'},
+  {id:'circolo',name:'Circolo Popolare',address:'40-41 Rathbone Pl, London W1T 1HX',lat:51.51717,lng:-0.13386,maps:'https://www.google.com/maps/search/?api=1&query=Circolo%20Popolare%2040-41%20Rathbone%20Place%20London'},
   {id:'flatironpiccadilly',name:'Flat Iron Piccadilly',address:'21 Denman St, London W1D 7HS',lat:51.51135,lng:-0.13372,maps:'https://www.google.com/maps/search/?api=1&query=Flat%20Iron%20Piccadilly%2021%20Denman%20St%20London'},
   {id:'bancone',name:'Bancone Golden Square',address:'8-10 Lower James St, London W1F 9EL',lat:51.511331,lng:-0.136507,maps:'https://www.google.com/maps/search/?api=1&query=Bancone%20Golden%20Square%20London'},
   {id:'zedel',name:'Brasserie Zédel',address:'20 Sherwood St, London W1F 7ED',lat:51.51047,lng:-0.13436,maps:'https://www.google.com/maps/search/?api=1&query=Brasserie%20Zedel%2020%20Sherwood%20Street%20London'},
