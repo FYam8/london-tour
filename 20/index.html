@@ -352,6 +352,23 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
   .dinner-list .dinner .dinner-copy strong{font-size:19px!important}
 }
 
+
+/* Carnaby/Kingly Court immediate dinner alternatives */
+.nearby-now{margin:0 0 16px;background:linear-gradient(180deg,#fff9ec,#fff);border:1px solid #eddcb4;border-radius:22px;padding:14px;box-shadow:var(--shadow)}
+.nearby-now-head h3{margin:4px 0 5px;font-size:21px;line-height:1.3}
+.nearby-now-head p{margin:0 0 12px;color:var(--muted);font-size:12px;line-height:1.6}
+.nearby-now-kicker{display:inline-block;font-size:10px;font-weight:900;letter-spacing:.08em;color:#a25d19}
+.nearby-now-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.nearby-now-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(45,25,38,.07)}
+.nearby-now-card>img{display:block;width:100%;height:205px;object-fit:cover;background:#eee}
+.nearby-now-body{padding:13px}
+.nearby-now-body>strong{display:block;font-size:19px;line-height:1.3;margin:5px 0 6px}
+.nearby-now-body p{margin:0 0 8px;color:var(--muted);font-size:12.5px;line-height:1.6}
+.nearby-now-tags{display:flex;gap:5px;flex-wrap:wrap}
+.nearby-now-tags span{background:#f7f1e8;border-radius:999px;padding:4px 7px;font-size:10px;font-weight:800}
+.nearby-now-meta{font-size:11px;font-weight:800;color:#4d4840;margin:8px 0 10px}
+@media(min-width:720px){.nearby-now-grid{grid-template-columns:1fr 1fr}.nearby-now-card>img{height:230px}}
+
 </style>
 </head>
 <body>
@@ -822,6 +839,74 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
 
 <section class="dinner-wrap" id="dinner-section">
   <div class="section-title"><h2>9/20 夜ごはん｜Leicester Square〜Piccadilly Circus</h2><p>高級すぎず、おしゃれ・入りやすさ重視</p></div>
+  
+  <section class="nearby-now" id="nearby-dinner-now">
+    <div class="nearby-now-head">
+      <div>
+        <span class="nearby-now-kicker">FLAT IRONが混んでいたら</span>
+        <h3>今いるCarnaby / Kingly Court周辺ですぐ行ける候補</h3>
+        <p>遠くへ移動せず、徒歩数分・おしゃれ・高級すぎない店を優先。写真は店内または料理写真です。</p>
+      </div>
+    </div>
+    <div class="nearby-now-grid">
+      <article class="nearby-now-card" data-dinner-id="padella">
+        <img src="https://www.hot-dinners.com/images/stories/blog/2026/padella/insuide.jpg" alt="Padella Soho 店内" loading="lazy">
+        <div class="nearby-now-body">
+          <div class="nearby-now-tags"><span>最優先</span><span>徒歩すぐ</span><span>パスタ</span></div>
+          <strong>Padella Soho</strong>
+          <p>2 Kingly Street。手打ちパスタで、カジュアルだけど内装がおしゃれ。ウォークイン対応で、混雑時はスマホのバーチャルキューにも入れます。</p>
+          <div class="nearby-now-meta">日曜ディナー 17:00–20:45</div>
+          <div class="actions">
+            <button type="button" data-dinner-focus="padella">地図で見る</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Padella%20Soho%202%20Kingly%20Street%20London" target="_blank" rel="noopener">Google Maps</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="nearby-now-card" data-dinner-id="dishoomcarnaby">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/vhMc4MNAABzgSrbsbuy56g/l.jpg" alt="Dishoom Carnaby 店内" loading="lazy">
+        <div class="nearby-now-body">
+          <div class="nearby-now-tags"><span>すぐ近く</span><span>雰囲気◎</span><span>インド料理</span></div>
+          <strong>Dishoom Carnaby</strong>
+          <p>22 Kingly Street。スクショの場所からかなり近い。レトロなBombay café風で、家族で料理をシェアしやすいです。</p>
+          <div class="nearby-now-meta">日曜 09:00–23:00</div>
+          <div class="actions">
+            <button type="button" data-dinner-focus="dishoomcarnaby">地図で見る</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Dishoom%20Carnaby%2022%20Kingly%20Street%20London" target="_blank" rel="noopener">Google Maps</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="nearby-now-card" data-dinner-id="pastaio">
+        <img src="https://static.thatsup.co/content/img/place/p/a/pastaio-7.jpg" alt="Pastaio Carnaby 店内" loading="lazy">
+        <div class="nearby-now-body">
+          <div class="nearby-now-tags"><span>徒歩数分</span><span>カジュアル</span><span>パスタ</span></div>
+          <strong>Pastaio Carnaby</strong>
+          <p>19 Ganton Street。明るいアート壁の店内で、値段も比較的抑えやすい。Padellaが混んでいた時のパスタ代替として使いやすいです。</p>
+          <div class="nearby-now-meta">日曜 12:00–22:00</div>
+          <div class="actions">
+            <button type="button" data-dinner-focus="pastaio">地図で見る</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Pastaio%2019%20Ganton%20Street%20London" target="_blank" rel="noopener">Google Maps</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="nearby-now-card" data-dinner-id="polpo">
+        <img src="https://images.squarespace-cdn.com/content/v1/56e03252ab48ded0e100ec12/1479312579787-RX0FTHT815VPRLH7JSXJ/Polpo%2BSoho%2BReview" alt="POLPO Soho 店内" loading="lazy">
+        <div class="nearby-now-body">
+          <div class="nearby-now-tags"><span>Beak Street</span><span>落ち着く</span><span>イタリアン</span></div>
+          <strong>POLPO Soho</strong>
+          <p>41 Beak Street。ヴェネツィア風の小皿料理。木・タイル・真鍮系の内装で、Flat Ironとは違う落ち着いたおしゃれさです。</p>
+          <div class="nearby-now-meta">日曜 13:00–21:00</div>
+          <div class="actions">
+            <button type="button" data-dinner-focus="polpo">地図で見る</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=POLPO%2041%20Beak%20Street%20London" target="_blank" rel="noopener">Google Maps</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <div class="dinner-tonight"><b>今夜の本命：</b>Flat Iron Piccadilly。Piccadilly Circusのすぐ近くで、ステーキ中心・雰囲気も良く、価格も高級店ほど重くありません。パスタならBancone Golden Square、華やかな内装ならBrasserie Zédel、気軽ならPizza Pilgrims Soho。</div>
   <div class="dinner-map-card">
     <div class="dinner-map-head">
@@ -832,6 +917,10 @@ html.ios .leaflet-marker-icon{will-change:auto!important}
       <button type="button" id="dinnerFitAll">全候補を見る</button>
     </div>
     <div class="dinner-map-chips" id="dinnerMapChips">
+      <button type="button" data-dinner-focus="padella">★ Padella Soho</button>
+      <button type="button" data-dinner-focus="dishoomcarnaby">Dishoom Carnaby</button>
+      <button type="button" data-dinner-focus="pastaio">Pastaio</button>
+      <button type="button" data-dinner-focus="polpo">POLPO</button>
       <button type="button" data-dinner-focus="flatironpiccadilly">★ Flat Iron Piccadilly</button>
       <button type="button" data-dinner-focus="bancone">Bancone</button>
       <button type="button" data-dinner-focus="zedel">Brasserie Zédel</button>
@@ -1284,6 +1373,10 @@ loadLeaflet().then(()=>initSouvenirGuide()).catch(()=>{const loading=document.ge
 
 
 const DINNER_PLACES = [
+  {id:'padella',name:'Padella Soho',address:'2 Kingly St, London W1B 5PB',lat:51.51240,lng:-0.13905,maps:'https://www.google.com/maps/search/?api=1&query=Padella%20Soho%202%20Kingly%20Street%20London'},
+  {id:'dishoomcarnaby',name:'Dishoom Carnaby',address:'22 Kingly St, London W1B 5QP',lat:51.51311,lng:-0.13923,maps:'https://www.google.com/maps/search/?api=1&query=Dishoom%20Carnaby%2022%20Kingly%20Street%20London'},
+  {id:'pastaio',name:'Pastaio Carnaby',address:'19 Ganton St, London W1F 9BN',lat:51.51277,lng:-0.13806,maps:'https://www.google.com/maps/search/?api=1&query=Pastaio%2019%20Ganton%20Street%20London'},
+  {id:'polpo',name:'POLPO Soho',address:'41 Beak St, London W1F 9SB',lat:51.51231,lng:-0.13741,maps:'https://www.google.com/maps/search/?api=1&query=POLPO%2041%20Beak%20Street%20London'},
   {id:'fallow',name:'Fallow',address:'52 Haymarket, London SW1Y 4RP',lat:51.509241,lng:-0.132682,maps:'https://www.google.com/maps/search/?api=1&query=Fallow%2052%20Haymarket%20London'},
   {id:'kiln',name:'Kiln Soho',address:'58 Brewer St, London W1F 9TL',lat:51.51135,lng:-0.13600,maps:'https://www.google.com/maps/search/?api=1&query=Kiln%2058%20Brewer%20Street%20London'},
   {id:'circolo',name:'Circolo Popolare',address:'40-41 Rathbone Pl, London W1T 1HX',lat:51.51717,lng:-0.13386,maps:'https://www.google.com/maps/search/?api=1&query=Circolo%20Popolare%2040-41%20Rathbone%20Place%20London'},
